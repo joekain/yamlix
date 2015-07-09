@@ -1,0 +1,2 @@
+defmodule Yamlix do
+end
