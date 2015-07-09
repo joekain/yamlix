@@ -1,7 +1,7 @@
 defmodule YamlixTest do
   use ExUnit.Case
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "it dumps integer scalars" do
+    assert Yamlix.dump(5) == "--- 5\n...\n"
   end
 end
