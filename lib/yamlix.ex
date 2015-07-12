@@ -1,20 +1,19 @@
 defmodule Yamlix do
-  @spec dump(integer()) :: String.t
+  alias RepresentationGraph, as: R;
+  alias RepresentationGraph.Node;
+
+  @spec dump(any) :: String.t
   def dump(scalar) do
-    scalar |> represent |> serialize |> present
+    scalar |> R.represent |> serialize |> present
   end
 
-  defp represent(scalar) do
-
+  defp serialize(node) do
+    to_string(Node.value(node))
   end
 
-  defp serialize(_) do
-
-  end
-
-  defp present(_) do
+  defp present(content) do
     "--- " <>
-    "5\n"  <>
-    "...\n"
+    content  <>
+    "\n...\n"
   end
 end
