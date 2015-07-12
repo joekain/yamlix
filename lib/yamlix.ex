@@ -8,7 +8,7 @@ defmodule Yamlix do
   end
 
   defp serialize(node) do
-    to_string(Node.value(node))
+    to_string(node)
   end
 
   defp present(content) do
