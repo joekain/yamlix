@@ -18,4 +18,28 @@ defmodule YamlixTest do
     ...
     """
   end
+
+  test "it dumps emtpy maps" do
+    assert Yamlix.dump(%{}) == """
+    --- 
+    ...
+    """
+  end
+
+  test "it dumps emtpy lists" do
+    assert Yamlix.dump([]) == """
+    --- 
+    ...
+    """
+  end
+
+  test "it dumps lists of strings" do
+    list = ["one", "two"]
+    assert Yamlix.dump(list) == """
+    --- 
+    - one
+    - two
+    ...
+    """
+  end
 end
