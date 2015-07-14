@@ -31,6 +31,7 @@ defmodule Yamlix.Mixfile do
       {:inch_ex, only: :docs},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.7", only: :dev},
+      {:yamerl, github: "yakaz/yamerl", only: :test}
     ]
   end
 end

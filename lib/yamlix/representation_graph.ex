@@ -18,6 +18,10 @@ defmodule RepresentationGraph do
       %Node{value: new_map, tag: ""}
     end
 
+    def new(scalar) when is_atom(scalar) and not is_boolean(scalar) do
+      %Node{value: scalar, tag: "!<tag:yamerl,2012:atom>"}
+    end
+
     def new(scalar) do
       %Node{value: scalar, tag: ""}
     end
@@ -44,8 +48,15 @@ defmodule RepresentationGraph do
       end
     end
 
-    def to_string(%Node{value: v, tag: _}) do
-      Kernel.to_string(v)
+    def to_string(%Node{value: v, tag: t}) do
+      tag_and_space(t) <> Kernel.to_string(v)
+    end
+
+    defp tag_and_space(t) do
+      case t do
+        "" -> ""
+        tag -> tag <> " "
+      end
     end
   end
 end
