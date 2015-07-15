@@ -7,13 +7,13 @@ defmodule Yamlix do
     scalar |> R.represent |> serialize |> present
   end
 
-  defp serialize(node) do
-    to_string(node)
+  defp serialize(graph) do
+    graph
   end
 
-  defp present(content) do
+  defp present(tree) do
     "--- " <>
-    content  <>
+    to_string(tree) <>
     "\n...\n"
   end
 end
