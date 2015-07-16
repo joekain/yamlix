@@ -61,12 +61,10 @@ defmodule YamlixTest do
     assert Yamlix.dump(false) == "--- false\n...\n"
   end
 
-  @tag :disable
   test "it dumps atoms with yamerl tag" do
     assert Yamlix.dump(:a) == "--- !<tag:yamerl,2012:atom> a\n...\n"
   end
 
-  @tag :disable
   test "it dumps atoms that can be parsed by yamerl" do
     assert [:a] == Yamlix.dump(:a) |> pasre_with_yamerl
   end
