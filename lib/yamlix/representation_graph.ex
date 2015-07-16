@@ -34,29 +34,4 @@ defmodule RepresentationGraph do
   def represent(scalar) do
     Node.new(scalar)
   end
-
-  defimpl String.Chars, for: Node do
-    def to_string(%Node{value: list, tag: _}) when is_list(list) do
-      list |> List.foldl "", fn val, acc ->
-        acc <> "\n- #{val}"
-      end
-    end
-
-    def to_string(%Node{value: map, tag: _}) when is_map(map) do
-      Map.keys(map) |> List.foldl "", fn key, acc ->
-        acc <> "\n#{key}: #{Map.get(map, key)}"
-      end
-    end
-
-    def to_string(%Node{value: v, tag: t}) do
-      tag_and_space(t) <> Kernel.to_string(v)
-    end
-
-    defp tag_and_space(t) do
-      case t do
-        "" -> ""
-        tag -> tag <> " "
-      end
-    end
-  end
 end
