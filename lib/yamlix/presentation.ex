@@ -72,23 +72,6 @@ defmodule Presentation do
   
   #########################################################
 
-
-  def format(%Node{value: list, tag: _}, level) when is_list(list) do
-    list |> List.foldl "\n", fn val, acc ->
-      acc <> indent(level - 1) <> "- " <> format(val, 0) <> "\n"
-    end
-  end
-
-  def format(%Node{value: map, tag: _}, level) when is_map(map) do
-    Map.keys(map) |> List.foldl "", fn key, acc ->
-      acc <> indent(level) <> format(key, 0) <> ": " <> format(Map.get(map, key), level + 1) <> "\n"
-    end
-  end
-
-  def format(%Node{value: v, tag: t}, _level) do
-    tag_and_space(t) <> Kernel.to_string(v)
-  end
-  
   defp tag_and_space(t) do
     case t do
       "" -> ""
