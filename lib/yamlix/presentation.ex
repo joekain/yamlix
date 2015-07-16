@@ -78,7 +78,9 @@ defmodule Presentation do
       tag -> tag <> " "
     end
   end
-  
+
+  @spec indent(non_neg_integer) :: String.t
+  defp indent(0), do: ""
   defp indent(count) do
     String.duplicate(" ", count)
   end
