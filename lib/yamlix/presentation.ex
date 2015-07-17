@@ -5,12 +5,8 @@ defmodule Presentation do
   
   def present(tree) do
     "--- " <>
-    generate_yaml(tree) <>
+    produce(tree) <>
     "...\n"
-  end
-  
-  defp generate_yaml(node) do
-    produce(node)
   end
   
   defp produce(%Node{value: list, tag: t}) when is_list(list) do
