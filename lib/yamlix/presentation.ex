@@ -27,13 +27,14 @@ defmodule Presentation do
     block_sequence(%Node{value: list, tag: t}, n)
   end
   defp sequence_element(%Node{value: map, tag: t}, n) when is_map(map) do
-    [key | keys] = Map.keys(map)
-    
-    mapping_pair(map, key, n) <> (
-      keys |> List.foldl "", fn key, acc ->
-        acc <> indent(n) <> mapping_pair(map, key, n)
-      end
-    )
+    case Map.keys(map) do
+      [] -> "{}\n"
+      [key | keys] -> mapping_pair(map, key, n) <> (
+        keys |> List.foldl "", fn key, acc ->
+          acc <> indent(n) <> mapping_pair(map, key, n)
+        end
+      )
+    end
   end
   defp sequence_element(node, _n) do
     literal(node, 0) <> "\n"

@@ -48,6 +48,16 @@ defmodule YamlixTest do
     ...
     """
   end
+  
+  test "it dumps empty maps in a list" do
+    list = [%{ "a" => "b"}, %{}]
+    assert Yamlix.dump(list) == """
+    --- 
+    - a: b
+    - {}
+    ...
+    """
+  end
 
   test "it dumps floats" do
     assert Yamlix.dump(5.0) == "--- 5.0\n...\n"
