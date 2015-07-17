@@ -1,8 +1,6 @@
 defmodule Presentation do
   alias RepresentationGraph.Node
-  
-  @m 2
-  
+
   def present(tree) do
     "--- " <>
     produce(tree) <>
@@ -21,7 +19,7 @@ defmodule Presentation do
   
   defp block_sequence(%Node{value: list, tag: t}, n) do
     list |> List.foldl "\n", fn val, acc ->
-      acc <> indent(n) <> "- " <> sequence_element(val, n + @m)
+      acc <> indent(n) <> "- " <> sequence_element(val, n + 1)
     end
   end
   
@@ -55,7 +53,7 @@ defmodule Presentation do
     block_sequence(%Node{value: list, tag: t}, n)
   end
   defp mapping_value(%Node{value: map, tag: t}, n) when is_map(map) do
-    block_mapping(%Node{value: map, tag: t}, n + @m)
+    block_mapping(%Node{value: map, tag: t}, n + 1)
   end
   defp mapping_value(node, _n) do
     " " <> literal(node, 0) <> "\n" 
@@ -74,7 +72,7 @@ defmodule Presentation do
 
   @spec indent(non_neg_integer) :: String.t
   defp indent(0), do: ""
-  defp indent(count) do
-    String.duplicate(" ", count)
+  defp indent(level) do
+    String.duplicate(" ", level * 2)
   end
 end
