@@ -1,6 +1,6 @@
 defmodule RepresentationGraph do
   defmodule Node do
-    defstruct value: "", tag: ""
+    defstruct value: "", tag: "", anchor: ""
 
     def new(list) when is_list(list) do
       new_list = list |> Enum.map fn val ->
