@@ -30,7 +30,6 @@ defmodule SerializeTest do
     assert Map.values(map) |> Enum.all? fn %Node{anchor: anchor} -> anchor != "" end
   end
   
-  @tag :disable
   test "it should create unique anchor values" do
     structure = %{ "a" => "b", "c" => "d" }
     tree = R.represent(structure) |> S.generate_anchors
