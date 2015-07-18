@@ -1,13 +1,10 @@
 defmodule Yamlix do
   alias RepresentationGraph, as: R
+  alias Serialize, as: S
   alias Presentation, as: P
 
   @spec dump(any) :: String.t
   def dump(scalar) do
-    scalar |> R.represent |> serialize |> P.present
-  end
-
-  defp serialize(graph) do
-    graph
+    scalar |> R.represent |> S.serialize |> P.present
   end
 end

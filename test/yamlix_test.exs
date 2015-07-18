@@ -112,4 +112,21 @@ defmodule YamlixTest do
     ...
     """
   end
+  
+  @tag :disable
+  test "it handles repeated structures" do
+    repeated = %{ "a" => "b", "c" => "d" }
+    other = %{ "e" => "f" }
+    graph = [repeated, other, repeated]
+    
+    assert Yamlix.dump(graph) == """
+    ---
+    - &1
+      a: b
+      c: d
+    - e: f
+    - *1
+    ...
+    """
+  end
 end
